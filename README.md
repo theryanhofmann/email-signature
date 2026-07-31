@@ -30,10 +30,12 @@ Do not paste the HTML source code into Gmail. Gmail's signature editor accepts t
 
 The email itself uses no JavaScript. Animation is provided by normal GIF images.
 
-## Links currently configured
+## Signature details
 
+- Title: `CEO & Creative Director`
+- Email: `hofmann@alterra.studio`
 - Website: `https://alterra.studio`
-- Instagram: `https://www.instagram.com/theryanhofmann/`
-- LinkedIn: `https://www.linkedin.com/in/theryanhofmann`
-- YouTube: `https://youtube.com/alterrastudio`
-- Facebook currently points to the Facebook homepage; replace it in `signature.html` and `index.html` when a specific page URL is available.
+- Instagram: `https://www.instagram.com/alterrastudio/`
+- LinkedIn: `https://www.linkedin.com/company/alterrastudios/`
+
+Facebook and YouTube have been removed from the signature.
