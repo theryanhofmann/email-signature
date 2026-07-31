@@ -37,5 +37,6 @@ The email itself uses no JavaScript. Animation is provided by normal GIF images.
 - Website: `https://alterra.studio`
 - Instagram: `https://www.instagram.com/alterrastudio/`
 - LinkedIn: `https://www.linkedin.com/company/alterrastudios/`
+- X: `https://x.com/AlterraStudio`
 
 Facebook and YouTube have been removed from the signature.
