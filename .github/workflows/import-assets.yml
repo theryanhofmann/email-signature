@@ -43,8 +43,7 @@ jobs:
           curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/web-icon.gif' -o assets/website.gif
           curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/insta-icon.gif' -o assets/instagram.gif
           curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/linkedin-icon.gif' -o assets/linkedin.gif
-          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/facebook-icon.gif' -o assets/facebook.gif
-          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/youtube-icon.gif' -o assets/youtube.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/twitter-icon.gif' -o assets/twitter.gif
 
       - name: Commit self-hosted assets
         shell: bash
