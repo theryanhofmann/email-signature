@@ -1,13 +1,29 @@
 # Alterra Animated Email Signature
 
-Self-hosted, table-based HTML email signature for Ryan Hofmann / Alterra Studio.
+A self-hosted, table-based HTML email signature for Ryan Hofmann / Alterra Studio.
 
-The signature uses public repository assets, including an animated GIF profile image. Open `index.html` for the install preview, then copy the rendered signature into Gmail or Outlook.
+## Live installer
 
-## Files
+Open:
 
-- `index.html` — live install and preview page
-- `signature.html` — clean email-safe signature HTML
-- `assets/` — logo, animated portrait, badge, and social icons
+`https://cdn.jsdelivr.net/gh/theryanhofmann/email-signature@main/index.html`
 
-No subscription or runtime JavaScript is required for the email signature itself.
+Click **Copy signature**, then paste into Gmail under **Settings → See all settings → General → Signature**.
+
+## How it works
+
+- `index.html` is the copy/install page.
+- `signature.html` is the clean email-safe markup.
+- `assets/ryan-profile.gif` is the animated portrait.
+- The remaining files in `assets/` are the wordmark, badge, and animated social icons.
+- `.github/workflows/import-assets.yml` copied the current assets into this repository so the signature no longer depends on a monthly service.
+
+The email itself uses no JavaScript. Animation is provided by normal GIF images.
+
+## Links currently configured
+
+- Website: `https://alterra.studio`
+- Instagram: `https://www.instagram.com/theryanhofmann/`
+- LinkedIn: `https://www.linkedin.com/in/theryanhofmann`
+- YouTube: `https://youtube.com/alterrastudio`
+- Facebook currently points to the Facebook homepage; replace it in `signature.html` and `index.html` when a specific page URL is available.
