@@ -1,0 +1,45 @@
+name: Import signature assets
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Download signature assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets
+          curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/upload/signature/profile/31754/1785526628-31754-square.gif' -o assets/ryan-profile.gif
+          curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/upload/signature/31754/31754.png' -o assets/alterra-logo.png
+          curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/images/verify.gif' -o assets/verified.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/web-icon.gif' -o assets/website.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/insta-icon.gif' -o assets/instagram.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/linkedin-icon.gif' -o assets/linkedin.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/facebook-icon.gif' -o assets/facebook.gif
+          curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/youtube-icon.gif' -o assets/youtube.gif
+
+      - name: Commit self-hosted assets
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets
+          if git diff --cached --quiet; then
+            echo 'Assets are already current.'
+          else
+            git commit -m 'Self-host animated signature assets'
+            git push
+          fi
