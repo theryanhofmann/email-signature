@@ -17,12 +17,27 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Download signature assets
+      - name: Install image tooling
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: Download and optimize signature assets
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p assets
-          curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/upload/signature/profile/31754/1785526628-31754-square.gif' -o assets/ryan-profile.gif
+          curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/upload/signature/profile/31754/1785526628-31754-square.gif' -o /tmp/ryan-profile-source.gif
+
+          # Start on a completed portrait so clients that show only the first GIF
+          # frame still display a useful image. Resize to its actual email size.
+          if command -v magick >/dev/null 2>&1; then
+            magick '/tmp/ryan-profile-source.gif[30-62,0-29]' -coalesce -resize 140x140 -colors 96 -layers Optimize assets/ryan-profile.gif
+          else
+            convert '/tmp/ryan-profile-source.gif[30-62,0-29]' -coalesce -resize 140x140 -colors 96 -layers Optimize assets/ryan-profile.gif
+          fi
+
           curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/upload/signature/31754/31754.png' -o assets/alterra-logo.png
           curl -fL 'https://customesignature.s3.us-west-1.amazonaws.com/images/verify.gif' -o assets/verified.gif
           curl -fL 'https://image.customesignature.com/images/static/images/social/animation/4/web-icon.gif' -o assets/website.gif
@@ -40,6 +55,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'Assets are already current.'
           else
-            git commit -m 'Self-host animated signature assets'
+            git commit -m 'Optimize animated signature assets'
             git push
           fi
